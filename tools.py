@@ -1,7 +1,7 @@
 from tkinter.simpledialog import askstring
 import tkinter as tk
 
-def window(strings, window_title,used_ontologies_index,add_button, button_width=45):
+def window(strings, window_title,used_ontologies_index,add_button, button_width=40):
     def newline(input_string, wrap_length=button_width):
         words = input_string.split()
         lines = []
