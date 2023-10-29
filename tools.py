@@ -61,7 +61,7 @@ def window(strings, window_title,used_ontologies_index,add_button, button_width=
     for index, string in enumerate(strings):
         if index in used_ontologies_index:
             #edw genika allazei o tropos emfanishs
-            button = tk.Button(frame_buttons, text=newline(string, wrap_length=button_width), command=lambda i=index: save_position(i),font="BOLD",bg="red")#kanei bold tour orous pou h bibliothiki tous uparxei hdh
+            button = tk.Button(frame_buttons, text=newline(string, wrap_length=button_width), command=lambda i=index: save_position(i),font="BOLD",bg="green")#kanei bold tour orous pou h bibliothiki tous uparxei hdh
         else:
             button = tk.Button(frame_buttons, text=newline(string, wrap_length=button_width), command=lambda i=index: save_position(i))
         button.pack(fill=tk.BOTH)
