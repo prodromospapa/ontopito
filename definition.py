@@ -79,13 +79,12 @@ def export_data(a):
             self_link = Class['links']['self']
             definition_html=requests.get(self_link+f"?apikey={api_key}").json()
             ontology = self_link.split("/")[4]
-
             try:#checks if there is definition site
                 definition = definition_html["definition"]
                 definition=definition[0].replace("<p>","").replace("</p>","")
             except Exception as e:
                 continue
-            
+
             if term_def:
                 #ancestors
                 ancestors = definition_html['links']["ancestors"]
@@ -93,14 +92,10 @@ def export_data(a):
                 ancestor_details={anc['prefLabel']:[anc['definition'],anc['@id']] for anc in ancestry}
                 terms=list(ancestor_details.keys())
                 terms=[i.replace("_"," ") for i in terms]
-                childs = [term]
                 for i in terms:#checkarei ama mpainei sthn ontologia
                     if i.lower() in onto_terms:
-                        parent = i
+                        parent = i 
                         break
-                    else:
-                        childs.append(i)
-                    childs = childs[::-1]
                 if parent=="":
                     continue
             else:
@@ -116,7 +111,7 @@ def export_data(a):
                 choosing_ontology.append(ontology)
                 if term_def:
                     choosing_ancestors.append(ancestors)
-        except Exception:
+        except Exception as e:
             continue
     if term_def:
         return [choosing_def,choosing_iri,choosing_ancestors,choosing_ontology]
