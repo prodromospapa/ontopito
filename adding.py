@@ -16,7 +16,6 @@ def get_annotation(api_key,term,task,onto_ontologies):
     
     #obo
     url_obo=f"https://ontobee.org/search?ontology=&keywords={term.replace('_','+')}&submit=Search+terms"
-    print(url_obo)
     datas_obo = requests.get(url_obo).text
     soup_obo = BeautifulSoup(datas_obo,"html.parser")
     result_obo = soup_obo.find_all(class_="search-list")
