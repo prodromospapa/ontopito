@@ -56,7 +56,7 @@ for term in terms:
             can_add = 0
             new_added.append(term)
             if choosing_def == []:
-                print(f'''can't find your term "{term}"''')
+                print(f'''can't find your term "{term}"'''+" "*10)
                 new_added.pop(-1)
                 continue            
             #definition pick
