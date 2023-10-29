@@ -1,2 +1,8 @@
-/__pycache__
-.gitignore
+*
+!adding.py
+!ancestry.py
+!definition.py
+!main.py
+!README.md
+!requirements.txt
+!tools.py
