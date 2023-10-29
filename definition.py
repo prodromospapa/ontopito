@@ -22,15 +22,17 @@ def run_bioportal(datas,api_key,term,term_def,task):
     choosing_def=[]
     choosing_iri=[]
     choosing_ancestors=[]
+    choosing_ontology=[]
     for i in range(len(res)):
         choosing_def+=res[i][0]
         choosing_iri+=(res[i][1])
+        choosing_ontology+=(res[i][3])
         if term_def:
             choosing_ancestors+=(res[i][2])
     if term_def:
-        return [choosing_def,choosing_iri,choosing_ancestors]
+        return [choosing_def,choosing_iri,choosing_ancestors,choosing_ontology]
     else:
-        return [choosing_def,choosing_iri]
+        return [choosing_def,choosing_iri,choosing_ontology]
 
 def divide(a, n):
     k, m = divmod(len(a), n)
@@ -55,6 +57,7 @@ def export_data(a):
     choosing_def=[]
     choosing_iri=[]
     choosing_ancestors=[]
+    choosing_ontology=[]
     #general
     for data in datas:
         try:#kamia fora pernaei data pou den paizei
@@ -75,7 +78,9 @@ def export_data(a):
             IRI=Class["@id"]
 
             #definition
-            definition_html=requests.get(Class['links']['self']+f"?apikey={api_key}").json()
+            self_link = Class['links']['self']
+            definition_html=requests.get(self_link+f"?apikey={api_key}").json()
+            ontology = self_link.split("/")[4]
 
             try:#checks if there is definition site
                 definition = definition_html["definition"]
@@ -96,11 +101,12 @@ def export_data(a):
             else:          
                 choosing_def.append(definition)
                 choosing_iri.append(str(IRI))
+                choosing_ontology.append(ontology)
                 if term_def:
                     choosing_ancestors.append(ancestors)
         except Exception:
             continue
     if term_def:
-        return [choosing_def,choosing_iri,choosing_ancestors]
+        return [choosing_def,choosing_iri,choosing_ancestors,choosing_ontology]
     else:
-        return [choosing_def,choosing_iri]
+        return [choosing_def,choosing_iri,choosing_ontology]

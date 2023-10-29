@@ -29,14 +29,27 @@ if args.inp[0] != args.out:#ama exei orous me idia parental prepei na ksanafortw
 
 for term in terms:
     onto=get_ontology(args.out).load() #prepei na fortwnei kathe fora thn ananewmena terms
-    onto_terms = list(onto.classes())
-    onto_terms = [str(i.label[0]) for i in onto_terms]
+    onto_terms_list = list(onto.classes())
+    onto_terms = []
+    onto_ontologies = []
+    for i in onto_terms_list:
+        onto_terms.append(str(i.label[0]))
+        try:
+            onto_ontologies.append(i.comment[0])
+        except:
+            continue
     if term.lower() not in [i.lower() for i in onto_terms]:
         try:
             #definitions
             url_bio=f"https://data.bioontology.org/annotator?apikey={api_key}&text={term.replace(' ','%20')}"     
             datas = requests.get(url_bio).json()
-            choosing_def,choosing_iri,choosing_ancestors = run_bioportal(datas,api_key,term,True,task)
+            choosing_def,choosing_iri,choosing_ancestors,choosing_ontology = run_bioportal(datas,api_key,term,True,task)
+            
+            #find ontology that I have used
+            used_ontologies_index = []
+            for i in range(len(choosing_ontology)):
+                if choosing_ontology[i] in onto_ontologies:
+                    used_ontologies_index.append(i)
             can_add = 0
             new_added.append(term)
             while can_add == 0:
@@ -45,23 +58,25 @@ for term in terms:
                     new_added.pop(-1)
                     break            
                 #definition pick
-                pos,definition = window(choosing_def,(f'Definition for "{term}"'),add_button=False)
+                pos,definition = window(choosing_def,(f'Definition for "{term}"'),used_ontologies_index,add_button=False)
                 if definition:
                     picked = [definition]
                 else:
                     picked = [choosing_def[pos]]
 
-                picked += [choosing_iri[pos],choosing_ancestors[pos]]
+                picked += [choosing_iri[pos],choosing_ancestors[pos],choosing_ontology[pos]]
 
                 definition = picked[0] + f"({picked[1]})"
                 ancestors = picked[2]
+                ontology_name = picked[3]
 
                 del choosing_def[pos]
                 del choosing_iri[pos]
                 del choosing_ancestors[pos]
+                del choosing_ontology[pos]
 
                 #tree build
-                can_add = run(term,ancestors,api_key,definition,onto_terms,args.out,task)
+                can_add = run(term,ancestors,api_key,definition,onto_terms,args.out,task,ontology_name,onto_ontologies)
         except Exception as e:
             new_added.pop(-1)
             print(f'''Can't add "{term}"'''+" "*20)

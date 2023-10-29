@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from tools import window
 from definition import run_bioportal
 
-def get_annotation(api_key,term,task):
+def get_annotation(api_key,term,task,onto_ontologies):
     choosing_def=[]
     choosing_iri=[]
     #bioportal
@@ -16,13 +16,14 @@ def get_annotation(api_key,term,task):
     
     #obo
     url_obo=f"https://ontobee.org/search?ontology=&keywords={term.replace('_','+')}&submit=Search+terms"
+    print(url_obo)
     datas_obo = requests.get(url_obo).text
     soup_obo = BeautifulSoup(datas_obo,"html.parser")
     result_obo = soup_obo.find_all(class_="search-list")
     #obo
 
     #bioportal
-    choosing_def,choosing_iri = run_bioportal(datas,api_key,term,False,task)
+    choosing_def,choosing_iri,choosing_ontology = run_bioportal(datas,api_key,term,False,task)
 
     #obo
     for pick in result_obo:
@@ -66,7 +67,11 @@ def get_annotation(api_key,term,task):
     #    a = f"{choosing_def[0]} ({choosing_iri[0]})"
     #    return a
     else:
-        pos,definition = window(choosing_def,(f'''"{term}" isn't in your ontology'''),add_button=True)
+        used_ontologies_index = []
+        for i in range(len(choosing_ontology)):
+            if choosing_ontology in onto_ontologies:
+                used_ontologies_index.append(i)
+        pos,definition = window(choosing_def,(f'''"{term}" isn't in your ontology'''),used_ontologies_index,add_button=True)
         if definition:
             if pos <= len(choosing_def)-1:
                 return f"{definition} ({choosing_iri[pos]})"

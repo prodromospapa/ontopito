@@ -1,7 +1,7 @@
 from tkinter.simpledialog import askstring
 import tkinter as tk
 
-def window(strings, window_title, add_button, button_width=50):
+def window(strings, window_title,used_ontologies_index,add_button, button_width=45):
     def newline(input_string, wrap_length=button_width):
         words = input_string.split()
         lines = []
@@ -59,8 +59,12 @@ def window(strings, window_title, add_button, button_width=50):
 
     buttons = []
     for index, string in enumerate(strings):
-        button = tk.Button(frame_buttons, text=newline(string, wrap_length=button_width), command=lambda i=index: save_position(i))
-        button.pack(fill=tk.X)
+        if index in used_ontologies_index:
+            #edw genika allazei o tropos emfanishs
+            button = tk.Button(frame_buttons, text=newline(string, wrap_length=button_width), command=lambda i=index: save_position(i),font="BOLD",bg="red")#kanei bold tour orous pou h bibliothiki tous uparxei hdh
+        else:
+            button = tk.Button(frame_buttons, text=newline(string, wrap_length=button_width), command=lambda i=index: save_position(i))
+        button.pack(fill=tk.BOTH)
         button.bind("<Button-3>", lambda event, i=index, b=button: right_click_menu(event, i, b))
         buttons.append(button)
     
@@ -68,7 +72,7 @@ def window(strings, window_title, add_button, button_width=50):
         #adding button for typing your own
         index+=1
         button = tk.Button(frame_buttons, text="Right click to add yours", command=lambda i=index: save_position(i))
-        button.pack(fill=tk.X)
+        button.pack(fill=tk.BOTH)
         button.bind("<Button-3>", lambda event, i=index, b=button: right_click_menu(event, i, b))
         buttons.append(button)
 
