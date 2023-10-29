@@ -23,7 +23,7 @@ def get_annotation(api_key,term,task,onto_ontologies):
     #obo
 
     #bioportal
-    choosing_def,choosing_iri,choosing_ontology = run_bioportal(datas,api_key,term,False,task)
+    choosing_def,choosing_iri,choosing_ontology = run_bioportal(datas,api_key,term,False,task,[])
 
     #obo
     for pick in result_obo:

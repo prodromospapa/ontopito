@@ -22,13 +22,13 @@ def create_ancestry(term,ancestry_url,api_key,definition,onto_terms,output,task,
         else:
             childs.append(i)
     childs = childs[::-1]
+        
     for checking_format in [parent.title(),parent.lower(),parent.upper()]:
         onto_parent = onto.search(label = checking_format)
         if onto_parent:
             parent = checking_format
 
-    if parent=="":
-        return 0
+
 
     for child in childs[:-1]:
         child_def = ancestor_details[child][0]

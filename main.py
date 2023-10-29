@@ -43,7 +43,7 @@ for term in terms:
             #definitions
             url_bio=f"https://data.bioontology.org/annotator?apikey={api_key}&text={term.replace(' ','%20')}"     
             datas = requests.get(url_bio).json()
-            choosing_def,choosing_iri,choosing_ancestors,choosing_ontology = run_bioportal(datas,api_key,term,True,task)
+            choosing_def,choosing_iri,choosing_ancestors,choosing_ontology = run_bioportal(datas,api_key,term,True,task,onto_terms)
             
             #find ontology that I have used
             used_ontologies_index = []
@@ -52,32 +52,32 @@ for term in terms:
                     used_ontologies_index.append(i)
             can_add = 0
             new_added.append(term)
-            while can_add == 0:
-                if choosing_def == []:
-                    print(f'''can't find your term "{term}"''')
-                    new_added.pop(-1)
-                    break            
-                #definition pick
-                pos,definition = window(choosing_def,(f'Definition for "{term}"'),used_ontologies_index,add_button=False)
-                if definition:
-                    picked = [definition]
-                else:
-                    picked = [choosing_def[pos]]
+            if choosing_def == []:
+                print(f'''can't find your term "{term}"''')
+                new_added.pop(-1)
+                break            
+            #definition pick
+            pos,definition = window(choosing_def,(f'Definition for "{term}"'),used_ontologies_index,add_button=False)
+            if definition:
+                picked = [definition]
+            else:
+                picked = [choosing_def[pos]]
 
-                picked += [choosing_iri[pos],choosing_ancestors[pos],choosing_ontology[pos]]
+            picked += [choosing_iri[pos],choosing_ancestors[pos],choosing_ontology[pos]]
 
-                definition = picked[0] + f"({picked[1]})"
-                ancestors = picked[2]
-                ontology_name = picked[3]
+            definition = picked[0] + f"({picked[1]})"
+            ancestors = picked[2]
+            ontology_name = picked[3]
 
-                del choosing_def[pos]
-                del choosing_iri[pos]
-                del choosing_ancestors[pos]
-                del choosing_ontology[pos]
+            del choosing_def[pos]
+            del choosing_iri[pos]
+            del choosing_ancestors[pos]
+            del choosing_ontology[pos]
 
-                #tree build
-                can_add = run(term,ancestors,api_key,definition,onto_terms,args.out,task,ontology_name,onto_ontologies)
+            #tree build
+            can_add = run(term,ancestors,api_key,definition,onto_terms,args.out,task,ontology_name,onto_ontologies)
         except Exception as e:
+            print(e)
             new_added.pop(-1)
             print(f'''Can't add "{term}"'''+" "*20)
             continue

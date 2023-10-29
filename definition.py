@@ -1,11 +1,8 @@
 import requests
 from owlready2 import *#https://pypi.org/project/owlready2/
-import shutil
-import sys
 import multiprocessing
-import threading
 
-def run_bioportal(datas,api_key,term,term_def,task):
+def run_bioportal(datas,api_key,term,term_def,task,onto_terms):
     if not len(datas):
         return [[],[],[]]
     #cpu check 
@@ -17,7 +14,7 @@ def run_bioportal(datas,api_key,term,term_def,task):
         task = len(datas)
     lista = list(divide(datas,task))
     p = multiprocessing.Pool(task) 
-    lista = [[i, term,api_key,term_def] for i in lista]
+    lista = [[i, term,api_key,term_def,onto_terms] for i in lista]
     res = p.map(export_data,lista)
     choosing_def=[]
     choosing_iri=[]
@@ -53,6 +50,7 @@ def export_data(a):
     term = a[1]
     api_key = a[2]
     term_def = a[3]
+    onto_terms =a[4]
     #general
     choosing_def=[]
     choosing_iri=[]
@@ -87,10 +85,24 @@ def export_data(a):
                 definition=definition[0].replace("<p>","").replace("</p>","")
             except Exception as e:
                 continue
-
+            
             if term_def:
                 #ancestors
                 ancestors = definition_html['links']["ancestors"]
+                ancestry=requests.get(ancestors+f"?apikey={api_key}").json()
+                ancestor_details={anc['prefLabel']:[anc['definition'],anc['@id']] for anc in ancestry}
+                terms=list(ancestor_details.keys())
+                terms=[i.replace("_"," ") for i in terms]
+                childs = [term]
+                for i in terms:#checkarei ama mpainei sthn ontologia
+                    if i.lower() in onto_terms:
+                        parent = i
+                        break
+                    else:
+                        childs.append(i)
+                    childs = childs[::-1]
+                if parent=="":
+                    continue
             else:
                 ancestors="pass"
 
