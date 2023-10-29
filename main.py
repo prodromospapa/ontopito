@@ -58,7 +58,7 @@ for term in terms:
             if choosing_def == []:
                 print(f'''can't find your term "{term}"''')
                 new_added.pop(-1)
-                break            
+                continue            
             #definition pick
             pos,definition = window(choosing_def,(f'Definition for "{term}"'),used_ontologies_index,add_button=False)
             if definition:
