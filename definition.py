@@ -94,6 +94,7 @@ def export_data(a):
                 ancestor_details={anc['prefLabel']:[anc['definition'],anc['@id']] for anc in ancestry}
                 terms=list(ancestor_details.keys())
                 terms=[i.replace("_"," ") for i in terms]
+                parent=""
                 for i in terms:#checkarei ama mpainei sthn ontologia
                     if i.lower() in onto_terms:
                         parent = i 
