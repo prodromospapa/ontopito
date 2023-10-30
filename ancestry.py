@@ -14,7 +14,6 @@ def create_ancestry(term,ancestry_url,api_key,definition,onto_terms,output,task,
     terms=[i for i in terms]
     childs = [term]
     parent=""
-    print(ancestor_details)
     for i in terms:
         if i.lower() in onto_terms:
             parent = i
