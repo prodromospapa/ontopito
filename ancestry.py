@@ -11,10 +11,10 @@ def create_ancestry(term,ancestry_url,api_key,definition,onto_terms,output,task,
     ancestry=requests.get(ancestry+f"?apikey={api_key}").json() #removes parent term
     ancestor_details={anc['prefLabel']:[anc['definition'],anc['@id']] for anc in ancestry}
     terms=list(ancestor_details.keys())
-    terms=[i.replace("_"," ") for i in terms]
+    terms=[i for i in terms]
     childs = [term]
     parent=""
-
+    print(ancestor_details)
     for i in terms:
         if i.lower() in onto_terms:
             parent = i
@@ -27,13 +27,13 @@ def create_ancestry(term,ancestry_url,api_key,definition,onto_terms,output,task,
         if onto_parent:
             parent = checking_format
     for child in childs[:-1]:
-        child_def = ancestor_details[child.replace(" ","_")][0]
+        child_def = ancestor_details[child][0]
         if child_def==[]:
-            child_def = get_annotation(api_key,child,task,onto_ontologies)
+            child_def = get_annotation(api_key,child.replace("_"," "),task,onto_ontologies)
             if child_def == 0:
-                child_def = askstring("Set definition", f'''Can't find definition for "{child}"''')               
+                child_def = askstring("Set definition", f'''Can't find definition for "{child.replace("_"," ")}"''')               
         else:
-            child_def = child_def[0]+ f"({ancestor_details[child.replace(' ','_')][1]})"
+            child_def = child_def[0]+ f"({ancestor_details[child][1]})"
         child = child.replace("_"," ")
         create_class(child,parent,child_def,onto,ontology_name)#vazei tous parental orous
         parent = child
