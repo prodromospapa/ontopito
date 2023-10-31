@@ -20,10 +20,10 @@ How to run this program:
 
 example:
 ```ruby
-/main.py -i bfo_classes_only.owl -n 6 -a (use here your own api-key) -t Human
+/main.py -i input_ontology.owl -o output_ontology.owl -n 6 -a (use here your own api-key) -t Human
 ```
 or with multiple terms:
 
 ```ruby
-/main.py -i bfo_classes_only.owl -n 6 -a (use here your own api-key) -t "Father,Student"
+/main.py -i input_ontology.owl -o output_ontology.owl -n 6 -a (use here your own api-key) -t "Father,Student"
 ```
