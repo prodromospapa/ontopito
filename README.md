@@ -9,7 +9,7 @@
 
 How to run this program:
 ```ruby
-./main.py -i INP [-o [OUT]] [-n [NCPU]] -a API -t [TERMS ...]
+python3 main.py -i INP [-o [OUT]] [-n [NCPU]] -a API -t [TERMS ...]
 ```
 
 - \-i: is for the input ontology in owl format
@@ -20,10 +20,10 @@ How to run this program:
 
 example:
 ```ruby
-/main.py -i input_ontology.owl -o output_ontology.owl -n 6 -a (use here your own api-key) -t Human
+python3 main.py -i input_ontology.owl -o output_ontology.owl -n 6 -a (use here your own api-key) -t Human
 ```
 or with multiple terms:
 
 ```ruby
-/main.py -i input_ontology.owl -o output_ontology.owl -n 6 -a (use here your own api-key) -t "Father,Student"
+python3 main.py -i input_ontology.owl -o output_ontology.owl -n 6 -a (use here your own api-key) -t "Father,Student"
 ```
