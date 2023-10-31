@@ -1,7 +1,5 @@
 import requests
 from owlready2 import *#https://pypi.org/project/owlready2/
-import shutil
-import sys
 from bs4 import BeautifulSoup
 from tools import window
 from definition import run_bioportal
@@ -45,9 +43,10 @@ def get_annotation(api_key,term,task,onto_ontologies):
                     definition = [item for item in opened_iri_soup if item.endswith('.')][0].replace("<p>","").replace("</p>"),""
                     if definition in choosing_def:
                         continue
-                    else:          
+                    else:                             
                         choosing_def.append(definition)
                         choosing_iri.append(iri)
+                        choosing_ontology.append(iri.split("/")[4].split("_")[0])
                 except Exception:
                     continue
 
