@@ -7,8 +7,7 @@
 3. Download the reference BFO ontology from https://github.com/BFO-ontology/BFO/blob/master/bfo_classes_only.owl and move it in the current directory
 4. Acquire your own Bioportal api-key from https://bioportal.bioontology.org/account by creating your own account
 
-How to run:
-You can run this program by using this command in the terminal:
+How to run this program:
 ```ruby
 ./main.py -i INP [-o [OUT]] [-n [NCPU]] -a API -t [TERMS ...]
 ```
