@@ -13,7 +13,9 @@ sudo apt-get install python3-tk
 3. Download the reference BFO ontology from https://github.com/BFO-ontology/BFO/blob/master/bfo_classes_only.owl 
 4. Acquire your own Bioportal api-key from https://bioportal.bioontology.org/account by creating your own account
 
-How to run this program:
+## How to run this program
+
+General format:
 ```ruby
 python3 main.py -i INP -o OUT -n NCPU -a API -t TERMS
 ```
