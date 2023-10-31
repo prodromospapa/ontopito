@@ -24,7 +24,7 @@ python3 main.py -i INP -o OUT -n NCPU -a API -t TERMS
 - \-a: your own personal api-key in Bioportal
 - \-t: for apposing the desired terms. The terms should be comma seperated and in quatation marks if they are more than one (e.g. "Father,Student")
 
-example:
+examples:
 with one term:
 ```ruby
 python3 main.py -i input_ontology.owl -o output_ontology.owl -n 6 -a (your api-key) -t Human
