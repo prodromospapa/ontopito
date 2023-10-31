@@ -1,6 +1,6 @@
-#ontopito#
+# ontopito
 
-##prerequirements##
+## prerequirements
 
 1. Run "pip install -r requirements.txt" to install the required libraries in python
 2. Run "sudo apt-get install python3-tk" to install tkinter in your system
