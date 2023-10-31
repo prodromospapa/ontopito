@@ -11,9 +11,9 @@ import requests
 parser=argparse.ArgumentParser(description="Get the initial owl file with the BFO terms from: https://github.com/BFO-ontology/BFO/blob/master/bfo_classes_only.owl")
 parser.add_argument("-i","--inp",type=str, nargs=1,required=True,help="Input file")
 parser.add_argument("-o","--out",type=str,nargs="?",required=False,default="output.owl",help="Output file (default:'output.owl')")
-parser.add_argument("-t","--terms",type=str,nargs="*",required=True,help='Your terms. The terms should be comma seperated and in quatation marks if they are more than one (e.g. "Father,Student")')
 parser.add_argument("-n","--ncpu",type=int,nargs="?",required=False,default=1,help="Set number of threads to be used (default:1)")
 parser.add_argument("-a","--api", type=str,nargs=1,required=True,help="Your api-key in bioportal (get it from: https://bioportal.bioontology.org/account)")
+parser.add_argument("-t","--terms",type=str,nargs="*",required=True,help='Your terms. The terms should be comma seperated and in quatation marks if they are more than one (e.g. "Father,Student")')
 
 args=parser.parse_args()
 
