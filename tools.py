@@ -71,7 +71,7 @@ def window(strings, window_title,used_ontologies_index,add_button, button_width=
     if add_button:
         #adding button for typing your own
         index+=1
-        button = tk.Button(frame_buttons, text="Right click to add yours", command=lambda i=index: save_position(i))
+        button = tk.Button(frame_buttons, text="Right click to add yours", command=lambda i=index: save_position(i),bg="red")
         button.pack(fill=tk.BOTH)
         button.bind("<Button-3>", lambda event, i=index, b=button: right_click_menu(event, i, b))
         buttons.append(button)
