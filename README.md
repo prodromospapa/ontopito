@@ -15,7 +15,7 @@ sudo apt-get install python3-tk
 
 How to run this program:
 ```ruby
-python3 main.py -i INP -o OUT -n NCPU -a API -t "TERMS"
+python3 main.py -i INP -o OUT -n NCPU -a API -t TERMS
 ```
 
 - \-i: name of the input ontology
@@ -25,10 +25,11 @@ python3 main.py -i INP -o OUT -n NCPU -a API -t "TERMS"
 - \-t: for apposing the desired terms. The terms should be comma seperated and in quatation marks if they are more than one (e.g. "Father,Student")
 
 example:
+with one term:
 ```ruby
 python3 main.py -i input_ontology.owl -o output_ontology.owl -n 6 -a (your api-key) -t Human
 ```
-or with multiple terms:
+with multiple terms:
 
 ```ruby
 python3 main.py -i input_ontology.owl -o output_ontology.owl -n 6 -a (your api-key) -t "Father,Student"
