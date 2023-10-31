@@ -20,10 +20,10 @@ python3 main.py -i INP -o OUT -n NCPU -a API -t "TERMS"
 
 example:
 ```ruby
-python3 main.py -i input_ontology.owl -o output_ontology.owl -n 6 -a (use here your own api-key) -t Human
+python3 main.py -i input_ontology.owl -o output_ontology.owl -n 6 -a (your api-key) -t Human
 ```
 or with multiple terms:
 
 ```ruby
-python3 main.py -i input_ontology.owl -o output_ontology.owl -n 6 -a (use here your own api-key) -t "Father,Student"
+python3 main.py -i input_ontology.owl -o output_ontology.owl -n 6 -a (your api-key) -t "Father,Student"
 ```
