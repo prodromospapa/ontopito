@@ -25,9 +25,9 @@ def run_bioportal(datas,api_key,term,term_def,task,onto_terms):
     for i in range(len(res)):
         choosing_def+=res[i][0]
         choosing_iri+=(res[i][1])
-        choosing_ontology+=(res[i][3])
+        choosing_ontology+=(res[i][2])
         if term_def:
-            choosing_ancestors+=(res[i][2])
+            choosing_ancestors+=(res[i][3])
     if term_def:
         return [choosing_def,choosing_iri,choosing_ancestors,choosing_ontology]
     else:
@@ -117,6 +117,6 @@ def export_data(a):
         except Exception as e:
             continue
     if term_def:
-        return [choosing_def,choosing_iri,choosing_ancestors,choosing_ontology]
+        return [choosing_def,choosing_iri,choosing_ontology,choosing_ancestors]
     else:
         return [choosing_def,choosing_iri,choosing_ontology]
