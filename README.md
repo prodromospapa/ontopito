@@ -1,5 +1,7 @@
 # ontopito
+
 ##prerequirements
+
 1. Run "pip install -r requirements.txt" to install the required libraries in python
 2. Run "sudo apt-get install python3-tk" to install tkinter in your system
 3. Download the reference BFO ontology from https://github.com/BFO-ontology/BFO/blob/master/bfo_classes_only.owl and move it in the current directory
