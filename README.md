@@ -12,11 +12,11 @@ How to run this program:
 python3 main.py -i INP -o OUT -n NCPU -a API -t "TERMS"
 ```
 
-- \-i: is for the input ontology in owl format
-- \-o: is for the name of the output ontology (default:'output.owl')
-- \-n: is for the number of cpu threads that you would like to use for this program (default:1)
-- \-a: is for your own personal api-key in Bioportal
-- \-t: is for apposing the desired terms. The terms should be comma seperated and in quatation marks if they are more than one (e.g. "Father,Student")
+- \-i: name of the input ontology
+- \-o: name of the output ontology (default:'output.owl')
+- \-n: number of cpu threads that you would like to use for this program (default:1)
+- \-a: your own personal api-key in Bioportal
+- \-t: for apposing the desired terms. The terms should be comma seperated and in quatation marks if they are more than one (e.g. "Father,Student")
 
 example:
 ```ruby
