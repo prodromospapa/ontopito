@@ -9,7 +9,7 @@
 
 How to run this program:
 ```ruby
-python3 main.py -i INP [-o [OUT]] [-n [NCPU]] -a API -t [TERMS ...]
+python3 main.py -i INP -o OUT -n NCPU -a API -t "TERMS"
 ```
 
 - \-i: is for the input ontology in owl format
