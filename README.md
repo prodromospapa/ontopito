@@ -22,3 +22,8 @@ example:
 ```ruby
 /main.py -i bfo_classes_only.owl -n 6 -a (use here your own api-key) -t Human
 ```
+or with multiple terms:
+
+```ruby
+/main.py -i bfo_classes_only.owl -n 6 -a (use here your own api-key) -t "Father,Student"
+```
