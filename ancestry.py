@@ -35,6 +35,7 @@ def create_ancestry(term,ancestry_url,api_key,definition,onto_terms,output,task,
             child_def = child_def[0]+ f"({ancestor_details[child][1]})"
         child = child.replace("_"," ")
         create_class(child,parent,child_def,onto,ontology_name)#vazei tous parental orous
+        parent=child
         onto.save(output,format="rdfxml")    
     create_class(term,parent,definition,onto,ontology_name)#vazei ton oro mou
     onto.save(output,format="rdfxml")   
