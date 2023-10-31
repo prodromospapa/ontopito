@@ -19,5 +19,5 @@ You can run this program by using this command in the terminal:
 
 example:
 ```ruby
-/main.py -i bfo_classes_only.owl -n 6 -a 1b1cc837-edf0-4d4b-89e6-f19449b03abf -t Human
+/main.py -i bfo_classes_only.owl -n 6 -a (use here your own api-key) -t Human
 ```
