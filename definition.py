@@ -17,7 +17,9 @@ def run_bioportal(datas,api_key,term,term_def,task,onto_terms):
     p = multiprocessing.Pool(task) 
     lista = [[i, term,api_key,term_def,onto_terms] for i in lista]
     res = p.map(export_data,lista)
-
+    p.close()
+    p.join()
+    
     choosing_def=[]
     choosing_iri=[]
     choosing_ancestors=[]
