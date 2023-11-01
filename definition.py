@@ -19,7 +19,7 @@ def run_bioportal(datas,api_key,term,term_def,task,onto_terms):
     res = p.map(export_data,lista)
     p.close()
     p.join()
-    
+
     choosing_def=[]
     choosing_iri=[]
     choosing_ancestors=[]
