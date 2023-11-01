@@ -20,11 +20,11 @@ General format:
 python3 main.py -i INP -o OUT -n NCPU -a API -t TERMS
 ```
 
-- \-i: name of the input ontology
-- \-o: name of the output ontology (default:'output.owl')
+- \-i: file name of the input ontology
+- \-o: file name of the output ontology (default:'output.owl')
 - \-n: number of cpu threads that you would like to use for this program (default:1)
 - \-a: your own personal api-key in Bioportal
-- \-t: for apposing the desired terms. The terms should be comma seperated and in quatation marks if they are more than one (e.g. "Father,Student")
+- \-t: for apposing the desired terms. The terms should be comma seperated and in quotation marks if they are more than one (e.g. "Father,Student")
 
 examples:
 
