@@ -61,7 +61,7 @@ def export_data(a):
     #general
     for data in datas:
         try:#kamia fora pernaei data pou den paizei
-            bar_length = 20
+            bar_length = 40
             current = int(round((datas.index(data)/len(datas)),2)*bar_length)
             left = bar_length - current
             print(f"loading: [{'*'*current}{' '*left}]",end="\r")
