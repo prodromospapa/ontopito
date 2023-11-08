@@ -24,7 +24,7 @@ def get_annotation(api_key,term,task,onto_ontologies):
 
     #obo
     for pick in result_obo:
-        bar_length = 20
+        bar_length = 40
         current = int(round((result_obo.index(pick)/len(result_obo)),2)*bar_length)
         left = bar_length - current
         print(f"loading: [{'*'*current}{' '*left}]",end="\r")
