@@ -60,7 +60,7 @@ for term in terms:
                 new_added.pop(-1)
                 continue            
             #definition pick
-            pos,definition = window(choosing_def,(f'Definition for "{term}"'),used_ontologies_index,add_button=False)
+            pos,definition = window(choosing_def,(f'Definition for "{term}"'),used_ontologies_index,choosing_ontology,add_button=False)
             if definition:
                 picked = [definition]
             else:

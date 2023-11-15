@@ -1,7 +1,7 @@
 from tkinter.simpledialog import askstring
 import tkinter as tk
 
-def window(strings, window_title,used_ontologies_index,add_button, button_width=40):
+def window(strings, window_title,used_ontologies_index,choosing_ontology,add_button, button_width=40):
     def newline(input_string, wrap_length=button_width):
         words = input_string.split()
         lines = []
@@ -61,9 +61,9 @@ def window(strings, window_title,used_ontologies_index,add_button, button_width=
     for index, string in enumerate(strings):
         if index in used_ontologies_index:
             #edw genika allazei o tropos emfanishs
-            button = tk.Button(frame_buttons, text=newline(string, wrap_length=button_width), command=lambda i=index: save_position(i),font="BOLD",bg="green")#kanei bold tour orous pou h bibliothiki tous uparxei hdh
+            button = tk.Button(frame_buttons, text=newline(string+f"({choosing_ontology[index]})", wrap_length=button_width), command=lambda i=index: save_position(i),font="BOLD",bg="green")#kanei bold tour orous pou h bibliothiki tous uparxei hdh
         else:
-            button = tk.Button(frame_buttons, text=newline(string, wrap_length=button_width), command=lambda i=index: save_position(i))
+            button = tk.Button(frame_buttons, text=newline(string+f"({choosing_ontology[index]})", wrap_length=button_width), command=lambda i=index: save_position(i))
         button.pack(fill=tk.BOTH)
         button.bind("<Button-3>", lambda event, i=index, b=button: right_click_menu(event, i, b))
         buttons.append(button)

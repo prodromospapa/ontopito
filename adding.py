@@ -69,7 +69,7 @@ def get_annotation(api_key,term,task,onto_ontologies):
         for i in range(len(choosing_ontology)):
             if choosing_ontology in onto_ontologies:
                 used_ontologies_index.append(i)
-        pos,definition = window(choosing_def,(f'''"{term}" isn't defined'''),used_ontologies_index,add_button=True)
+        pos,definition = window(choosing_def,(f'''"{term}" isn't defined'''),used_ontologies_index,choosing_ontology,add_button=True)
         if definition:
             if pos <= len(choosing_def)-1:
                 return f"{definition} ({choosing_iri[pos]})"
